@@ -1,6 +1,6 @@
 # How does the HNSW algorithm work
 
-![Layered representation of HNSW](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled.png)
+![Layered representation of HNSW](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/(https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled.png)
 
 Layered representation of HNSW
 
@@ -25,17 +25,17 @@ Skip lists use multiple layers of linked lists. The first layer has links that s
 
 For lookup we start at the highest level and move to the next element if it's less than or equal to the value, or move down to the next layer with more connections if it's greater. Repeat until you reach the lowest layer and find the value.
 
-![Untitled](how-does-the-hnsw-algorithm-work/Untitled%201.png)
+![Untitled]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%201.png)
 
-## ****Navigable Small World Graphs****
+## Navigable Small World Graphs
 
 Navigable small world[3] is a graph with poly logarithmic *T = O(logᵏn)* search complexity. 
 
-![Untitled](how-does-the-hnsw-algorithm-work/Untitled%202.png)
+![Untitled]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%202.png)
 
 The of starting the search process from low-degree vertices and ending with high-degree vertices is based on the greedy approach. We can move rapidly through the low degree vertices since they have few joining edges. This enables the algorithm to to efficiently navigate to the region where the nearest neighbour is likely to be located. Then the algorithm switches to high-degree vertices to find the nearest neighbour among the vertices in that region.
 
-![Assuming that Node A is the pre defined entry point, when we start searching the query, Node A chooses node E even if it having closer nodes C and B as query is closer to the node E. At node E, query is closer to node G, and finally at node G, node I is further closest to the query. Once all the neighbour is located and none of the neighbour is closer to the query than the node itself, it is returned as the result.](how-does-the-hnsw-algorithm-work/Untitled%203.png)
+![Assuming that Node A is the pre defined entry point, when we start searching the query, Node A chooses node E even if it having closer nodes C and B as query is closer to the node E. At node E, query is closer to node G, and finally at node G, node I is further closest to the query. Once all the neighbour is located and none of the neighbour is closer to the query than the node itself, it is returned as the result.]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%203.png)
 
 Assuming that Node A is the pre defined entry point, when we start searching the query, Node A chooses node E even if it having closer nodes C and B as query is closer to the node E. At node E, query is closer to node G, and finally at node G, node I is further closest to the query. Once all the neighbour is located and none of the neighbour is closer to the query than the node itself, it is returned as the result.
 
@@ -43,7 +43,7 @@ To identify the next vertex (or vertices) that the algorithm should proceed to, 
 
 One notable point is, this approach doesn’t always guarantee that results would be returned for the query. If the nodes connected to entry points are farther away from the query, the current node is returned itself signifying the early stopping.
 
-![Here, both the vertices B and C are farther from the query than the starting point A. Hence lookup is terminated as early stopping.](how-does-the-hnsw-algorithm-work/Untitled%204.png)
+![Here, both the vertices B and C are farther from the query than the starting point A. Hence lookup is terminated as early stopping.]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%204.png)
 
 Here, both the vertices B and C are farther from the query than the starting point A. Hence lookup is terminated as early stopping.
 
@@ -55,7 +55,7 @@ HNSW is a multi layered structure which is based on the same concepts of Skip li
 
 Adding hierarchy to NSW produces a graph where links are separated across different layers. At the top layer, we have the longest links, and at the bottom layer, we have the shortest which also means that at the top we have fewer nodes and at the bottom there are many node.
 
-![Layered representation of HNSW](how-does-the-hnsw-algorithm-work/Untitled.png)
+![Layered representation of HNSW]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled.png)
 
 Layered representation of HNSW
 
@@ -65,7 +65,7 @@ The number of operations required to find the nearest neighbour on any layer is 
 
 While lookup we start at the top layer, where we find the longest links. These vertices will tend to be higher-degree vertices (with links separated across multiple layers), meaning that we, by default, start in the *zoom-in* phase (algorithm switching to high-degree vertices to find the nearest neighbour among the vertices in that region) as seen in the case of Navigable small world graph.
 
-![Untitled](how-does-the-hnsw-algorithm-work/Untitled%205.png)
+![Untitled]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%205.png)
 
 The traversal in the HNSW is as same as the NSW, greedily moving to the nearest vertex until we find a local minimum. Only difference here is we move to the current vertex in a lower layer as we have multiple layers and begin searching again. We repeat this process until finding the local minimum of our bottom layer — *layer 0*.
 
@@ -73,7 +73,7 @@ The traversal in the HNSW is as same as the NSW, greedily moving to the nearest 
 
 Understanding the construction of the HNSW graph is important to know if you are going to be using Solr for the vector search or any other Vector DB.
 
-![Untitled](how-does-the-hnsw-algorithm-work/Untitled%206.png)
+![Untitled]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%206.png)
 
 During graph construction, vectors are iteratively inserted one-by-one. The number of layers is represented by parameter *L*. The probability of a vector insertion at a given layer is given by a probability function f(level, mL).
 
@@ -93,7 +93,7 @@ The *ef* value is increased to **efConstruction** (a parameter we set), mean
 
 *M* neighbors are added as links from these candidates — the most straightforward selection criteria are to choose the closest vectors.
 
-![Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  ](how-does-the-hnsw-algorithm-work/Untitled%207.png)
+![Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  ]((https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/Untitled%207.png)
 
 Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  
 
