@@ -93,7 +93,7 @@ The *ef* value is increased to **efConstruction** (a parameter we set), mean
 
 *M* neighbors are added as links from these candidates — the most straightforward selection criteria are to choose the closest vectors.
 
-![Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  ](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled%207.png)
+![Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled%207.png)
 
 Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  
 
