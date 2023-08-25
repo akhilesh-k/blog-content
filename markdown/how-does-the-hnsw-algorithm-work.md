@@ -1,6 +1,6 @@
 # How does the HNSW algorithm work
 
-![Layered representation of HNSW](./how-does-the-hnsw-algorithm-work/Untitled.png)
+![Layered representation of HNSW](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled.png)
 
 Layered representation of HNSW
 
