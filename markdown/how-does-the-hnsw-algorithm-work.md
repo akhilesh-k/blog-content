@@ -1,88 +1,115 @@
-# Bloom Filters Unveiled: Understanding, Implementing, and Applications Explained
+# How does the HNSW algorithm work
 
-In the ever-evolving landscape of computer science, the pursuit of efficiency is a constant endeavor. Whether it's sifting through vast datasets, detecting duplicates, or optimizing memory utilization, engineers continually seek innovative solutions to these challenges. One such gem in the realm of data structures is the Bloom filter. A Bloom filter is a probabilistic data structure that provides a space-efficient and rapid method for testing membership in a set. In this article, we embark on a comprehensive exploration of Bloom filters, delving into their core concepts, mastering their implementation, and uncovering their versatile applications.
+![Layered representation of HNSW](./how-does-the-hnsw-algorithm-work/Untitled.png)
 
-## Understanding Bloom Filters
+Layered representation of HNSW
 
-At its core, a Bloom filter addresses a fundamental question: Does an element belong to a particular set? This question arises frequently in various scenarios, from spell checking to network caching. However, traditional methods like hash tables can be memory-intensive, especially for large datasets. This is where Bloom filters shine.
+## Background
 
-A Bloom filter takes a different approach. It employs a bit array, which is an array of bits, typically initialized to zeros. Additionally, it uses a set of hash functions. When you insert an element into the Bloom filter, each hash function is applied to the element, and the corresponding bits in the bit array are set to 1. Checking for membership involves hashing the element and examining the corresponding bits. If all the bits are set to 1, the element might be in the set; if any bit is 0, the element is definitely not in the set.
+The advancements in Semantic and Similarity search have caused a dynamic transformation in queries. Nowadays, more queries are made with natural language context, and the most relevant results need to be returned for the query.
 
-It's important to note that Bloom filters can occasionally produce false positives, indicating an element is in the set when it's not. However, they never produce false negatives, meaning if the filter claims an element is not in the set, it's accurate. This probabilistic behavior is a trade-off that allows Bloom filters to be extremely memory-efficient.
+Solr's latest release, version 9.x, now includes vector search capabilities with the HNSW similarity algorithm. This post is about my experience learning about HNSW while exploring Solr's vector search feature.
 
-## Implementing a Bloom Filter
+Hierarchical Navigable Small World (HNSW) graphs are is a state-of-the-art algorithm used for an approximate search of nearest neighbours. Under the hood, HNSW constructs optimised graph structures which can be used to create [index](https://en.wikipedia.org/wiki/Search_engine_indexing)[1] for the search.
 
-To understand the implementation of a Bloom filter, let's break it down into steps:
+> The main idea behind HNSW is to construct a graph in which a path between any pair of vertices can be traversed in a small number of steps.
+> 
 
-1. **Bit Array**: Create a bit array of a fixed size, initialized with zeros.
+HNSW is a popular nearest neighbour search. And there are some pretty advanced data structure involved, i.e. Skip List and and navigable small world graphs
 
-2. **Hash Functions**: Choose a set of independent hash functions. These functions should produce uniform and random distribution of hash values.
+## Skip List
 
-3. **Insertion**: When you want to insert an element into the Bloom filter, apply each hash function to the element, and set the corresponding bits in the bit array to 1.
+Skip list[2] is a probabilistic data structure that allows inserting and searching elements within a sorted list for *O(logn)* on average. A skip list is constructed by several layers of linked lists. The lowest layer has the original linked list with all the elements in it. When moving to higher levels, the number of skipped elements increases, thus decreasing the number of connections
 
-4. **Membership Test**: To check if an element is in the set, hash it using the same hash functions, and check the corresponding bits in the bit array. If all bits are set to 1, the element might be in the set.
+Skip lists use multiple layers of linked lists. The first layer has links that skip many nodes/vertices. Each layer below has links that skip fewer nodes/vertices.
 
-The efficiency of a Bloom filter depends on the size of the bit array and the number of hash functions. Smaller bit arrays and a larger number of hash functions reduce the chance of false positives but increase memory usage.
+For lookup we start at the highest level and move to the next element if it's less than or equal to the value, or move down to the next layer with more connections if it's greater. Repeat until you reach the lowest layer and find the value.
 
-```memo = {}
+![Untitled](how-does-the-hnsw-algorithm-work/Untitled%201.png)
 
-def knapsack(W, w, v, n):
-    if n == 0 or W == 0:
-        return 0
-  
-    # if weight of the nth item is more than the weight
-    # available in the knapsack the skip it
-    if (w[n - 1] > W):
-        return knapsack(W, w, v, n - 1)
-    
-    # Check if we already have an answer to the sunproblem
-    if (W, n) in memo:
-        return memo[(W, n)]
-  
-    # find value of the knapsack when the nth item is picked
-    value_picked = v[n - 1] + knapsack(W - w[n - 1], w, v, n - 1)
+## ****Navigable Small World Graphs****
 
-    # find value of the knapsack when the nth item is not picked
-    value_notpicked = knapsack(W, w, v, n - 1)
+Navigable small world[3] is a graph with poly logarithmic *T = O(logᵏn)* search complexity. 
 
-    # return the maxmimum of both the cases
-    # when nth item is picked and not picked
-    value_max = max(value_picked, value_notpicked)
+![Untitled](how-does-the-hnsw-algorithm-work/Untitled%202.png)
 
-    # store the optimal answer of the subproblem
-    memo[(W, n)] = value_max
+The of starting the search process from low-degree vertices and ending with high-degree vertices is based on the greedy approach. We can move rapidly through the low degree vertices since they have few joining edges. This enables the algorithm to to efficiently navigate to the region where the nearest neighbour is likely to be located. Then the algorithm switches to high-degree vertices to find the nearest neighbour among the vertices in that region.
 
-    return value_max
-```
+![Assuming that Node A is the pre defined entry point, when we start searching the query, Node A chooses node E even if it having closer nodes C and B as query is closer to the node E. At node E, query is closer to node G, and finally at node G, node I is further closest to the query. Once all the neighbour is located and none of the neighbour is closer to the query than the node itself, it is returned as the result.](how-does-the-hnsw-algorithm-work/Untitled%203.png)
 
-## Applications of Bloom Filters
+Assuming that Node A is the pre defined entry point, when we start searching the query, Node A chooses node E even if it having closer nodes C and B as query is closer to the node E. At node E, query is closer to node G, and finally at node G, node I is further closest to the query. Once all the neighbour is located and none of the neighbour is closer to the query than the node itself, it is returned as the result.
 
-The versatility of Bloom filters makes them valuable across various domains:
+To identify the next vertex (or vertices) that the algorithm should proceed to, it computes the distances from the query vector to the neighbouring vertices of the current vertex and then advances to the nearest one. Eventually, the algorithm terminates the search process when it's unable to discover a neighbouring node that is closer to the query vector than the current node. The vertex where we terminated becomes the result of the query.
 
-- **Caching**: Bloom filters are widely used in caching mechanisms. In web browsers, for instance, they help quickly identify whether a URL is malicious, saving time and resources.
+One notable point is, this approach doesn’t always guarantee that results would be returned for the query. If the nodes connected to entry points are farther away from the query, the current node is returned itself signifying the early stopping.
 
-- **Spell Checking**: Spell checkers employ Bloom filters to rapidly determine if a word is in the dictionary. This accelerates the spell-checking process and enhances user experience.
+![Here, both the vertices B and C are farther from the query than the starting point A. Hence lookup is terminated as early stopping.](how-does-the-hnsw-algorithm-work/Untitled%204.png)
 
-- **Distributed Systems**: Bloom filters play a significant role in distributed systems. They help reduce data transfer by identifying whether a piece of data already exists in a remote node.
+Here, both the vertices B and C are farther from the query than the starting point A. Hence lookup is terminated as early stopping.
 
-- **Networking**: In networking, Bloom filters aid in tasks such as packet filtering, reducing unnecessary packet processing.
+To approach this limitation, many different starting points can be choosen.
 
-- **Duplicate Detection**: Bloom filters are utilized to identify duplicates in datasets, enabling efficient data cleansing.
+## Hierarchal Navigable Small World
 
-![Alt text](https://systemdesign.one/bloom-filters-explained/bloom-filter.webp "a title")
+HNSW is a multi layered structure which is based on the same concepts of Skip lists and the navigable small world graphs.
 
+Adding hierarchy to NSW produces a graph where links are separated across different layers. At the top layer, we have the longest links, and at the bottom layer, we have the shortest which also means that at the top we have fewer nodes and at the bottom there are many node.
 
-## Benefits and Considerations
+![Layered representation of HNSW](how-does-the-hnsw-algorithm-work/Untitled.png)
 
-Bloom filters offer several benefits, such as memory efficiency and rapid lookups. However, they come with trade-offs:
+Layered representation of HNSW
 
-- **False Positives**: Due to their probabilistic nature, Bloom filters can yield false positives. An element might be incorrectly identified as part of the set.
+The concept behind our graph is to create a network of interconnected points, if we take a proximity graph but build it so that we have both long-range and short-range links, then search times are reduced to logarithmic complexity from polynomial.
 
-- **Memory Usage**: The size of the bit array and the number of hash functions impact memory consumption. A larger bit array and more hash functions lead to lower false positive rates but higher memory usage.
+The number of operations required to find the nearest neighbour on any layer is bounded by a constant. Taking into consideration that the number of all layers in a graph is logarithmic, we get the total search complexity which is *O(logn)*
 
-## Conclusion
+While lookup we start at the top layer, where we find the longest links. These vertices will tend to be higher-degree vertices (with links separated across multiple layers), meaning that we, by default, start in the *zoom-in* phase (algorithm switching to high-degree vertices to find the nearest neighbour among the vertices in that region) as seen in the case of Navigable small world graph.
 
-The Bloom filter is a powerful tool in the realm of data structures, offering an ingenious approach to set membership testing, deduplication, and memory optimization. By understanding its inner workings, mastering its implementation intricacies, and exploring its wide array of applications, engineers can harness the potential of Bloom filters to enhance the efficiency and performance of their systems.
+![Untitled](how-does-the-hnsw-algorithm-work/Untitled%205.png)
 
-In an era where efficient data management is pivotal, the Bloom filter stands as a testament to the creative ingenuity that continues to shape the landscape of computer science. Its impact reverberates across diverse domains, driving technological advancements and revolutionizing the way we handle data and optimize processes. As we journey forward, the Bloom filter remains a beacon of efficiency in an ever-expanding digital universe.
+The traversal in the HNSW is as same as the NSW, greedily moving to the nearest vertex until we find a local minimum. Only difference here is we move to the current vertex in a lower layer as we have multiple layers and begin searching again. We repeat this process until finding the local minimum of our bottom layer — *layer 0*.
 
+## The construction of HNSW graph
+
+Understanding the construction of the HNSW graph is important to know if you are going to be using Solr for the vector search or any other Vector DB.
+
+![Untitled](how-does-the-hnsw-algorithm-work/Untitled%206.png)
+
+During graph construction, vectors are iteratively inserted one-by-one. The number of layers is represented by parameter *L*. The probability of a vector insertion at a given layer is given by a probability function f(level, mL).
+
+**Influence of the construction parameters:**
+
+> To achieve the optimum performance advantage of the controllable hierarchy, the overlap between neighbors on different layers (i.e. percent of element neighbors that are also belong to other layers) has to be small. — Yu. A. Malkov, D. A. Yashunin.
+> 
+
+Minimum the overlap of shared neighbors across layers, optimal the performance turns out to be. *Decreasing mL* can help minimize overlap (pushing more vectors to *layer 0*), but this increases the average number of traversals during search. So, we use an *mL* value which balances both. From the ANN Search using HNSW paper*[4] we can consider the* optimal value of *mL* which is equal to *1 / ln(M)*. 
+Note, M is derived from the relation *p = 1 / M* of the skip list being an average single element overlap between the layers
+
+Graph construction starts at the top layer. After entering the graph the algorithm greedily traverse across edges, finding the *ef* nearest neighbors to our inserted vector *q* — at this point *ef = 1*.
+
+After finding the local minimum, it moves down to the next layer (just as is done during search). This process is repeated until reaching our chosen *insertion layer*. Here begins phase two of construction.
+
+The *ef* value is increased to **efConstruction** (a parameter we set), meaning more nearest neighbors will be returned. In phase two, these nearest neighbors are candidates for the links to the new inserted element *q* *and* as entry points to the next layer.
+
+*M* neighbors are added as links from these candidates — the most straightforward selection criteria are to choose the closest vectors.
+
+![Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  ](how-does-the-hnsw-algorithm-work/Untitled%207.png)
+
+Lets assume, Mmax = 3 and M maxo = 5. As more vertices are entered, edges upto Mmaxo can be created for Layer 0 and M max for Layer 1.  
+
+After working through multiple iterations, there are two more parameters that are considered when adding links. *M_max*, which defines the maximum number of links a vertex can have, and *M_max0*, which defines the same but for vertices in *layer 0*.
+
+Now once we have this understanding, how can we use this while building HNSW index in Solr?
+
+| Solr Index time Parameter | Default | Description |
+| --- | --- | --- |
+| hnswMaxConnections | 16 | Lucene90HnswVectorsFormat only:Controls how many of the nearest neighbor candidates are connected to the new node.It has the same meaning as M from the paperhttps://arxiv.org/abs/1603.09320. |
+| hnswBeamWidth | 100 | Lucene90HnswVectorsFormat only: It is the number of nearest neighbor candidates to track while searching the graph for each newly inserted node.It has the same meaning as efConstruction from the paperhttps://arxiv.org/abs/1603.09320. |
+
+Ref:
+
+1. Search Engine Index: [https://en.wikipedia.org/wiki/Search_engine_indexing](https://en.wikipedia.org/wiki/Search_engine_indexing)
+2. Skip Lists: [https://en.wikipedia.org/wiki/Skip_list](https://en.wikipedia.org/wiki/Skip_list)
+3. Navigable Small world: [https://en.wikipedia.org/wiki/Small-world_network](https://en.wikipedia.org/wiki/Small-world_network)
+4. ANN Search using HNSW paper: [https://arxiv.org/pdf/1603.09320.pdf](https://arxiv.org/pdf/1603.09320.pdf)
+5. Dense Vector field in Solr: [https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html](https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html)
