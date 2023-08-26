@@ -1,12 +1,12 @@
 # Bloom Filters Explained
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled.png)
+![Bloom filters explained](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/cover.png)
 
 ## Background
 
 We use data structures like the HashSet where we can confirm weather an item is present. For the data set with smaller size, confirming membership can be quick but to test if an item is a member of a large dataset can be expensive. The time complexity and space complexity can be linear in the worst case.
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%201.png)
+![HashMap lookups](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/hashmap-lookups.png)
 
 This brings us to the need to designing a data structure which fulfils the following cases:
 
@@ -30,7 +30,7 @@ A bloom filter is based on hashing and is very much like a hash table in that
 
 It can be visualised as a bit array of length n. The indexes of the bit array (0 to n-1) represents the bucket.
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%202.png)
+![Bloom filter initialisation](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/bloom-filters-initialisation.png)
 
 Initially all the values are set to 0 when an empty bloom filter is initialised. The values of the items are themselves are not added to a set, instead a hash of the elements (represented by set of bits) is added to the set.
 
@@ -39,7 +39,7 @@ Initially all the values are set to 0 when an empty bloom filter is initialised.
 TLDR; 
 incoming item —> [k hash functions] —> hash % n —> k array positions —> bits in all the identified buckets are set to 1
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%203.png)
+![Bloom filter insertion](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/bloom-filter-insertion.png)
 
 Any value which has to be inserted to the bloom filters are hashed through k hash function which are independent of each other.
 
@@ -56,15 +56,15 @@ Notable points:
 1. If any of the identified bits are set to 0, the item is not a member of the bloom filter.
 2. if all the identified bits are set to 1, the item might be a member of the bloom filter.
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%204.png)
+![Bloom filter non determinstic lookups](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/probablistic-lookup.png)
 
 The uncertainty about the membership of an item is due to the possibility of some bits being set to one by different items or due to hash function collisions.
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%205.png)
+![Bloom filter deterministic absence](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/deterministic-absence.png)
 
 ## Bloom filter false positive cases:
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%206.png)
+![Bloom Filter false positives](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/false-positives.png)
 
 It is possible that the same hash functions and modulo can give us bucket positions which have bits set to 1 even if the element is not present in the bloom filter. This is a false positive case.
 
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
 We can check how the bits are flipped once an item is inserted.
 
-![Untitled](Bloom%20Filters%20Explained%2046f4f8dc0a5f4e7cba16251721e8346d/Untitled%207.png)
+![Running Bloom filters with Python](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/bloom-filters-explained/testing-with-python.png)
 
 Ref:
 
