@@ -94,7 +94,7 @@ To grasp the space complexity of the bloom filter, you must begin by selecting y
 | --- | --- |
 | space | O(n) |
 
-## **Advantages of bloom filter**
+## Advantages of bloom filter
 
 There are many advantages of the bloom filters including the complexity which we have just analyzed
 
