@@ -48,11 +48,17 @@ Layer 7 load balancers operate at the application layer, leveraging HTTP headers
 Load balancing algorithms powers up how the load balancers distribute traffic. There are various algorithms which caters to the use cases. Here are few load balancing algorithms:
 
 1. **Round Robin**: Cycles through the available servers and sequentially assigns requests.
+
 2. **Least Connections**: Directs requests to the server with the fewest active connections.
+
 3. **Weighted Round Robin**: Considers server capacities, distributing requests proportionally.
+
 4. **Weighted Least Connections**: Balances load based on active connections and capacities.
+
 5. **IP Hash**: Routes requests based on source/destination IP, maintaining session persistence.
+
 6. **Least Response Time**: Sends requests to the server with the lowest response time.
+   
 7. **Least Bandwidth**: Routes to the server using the least network bandwidth.
 
 ## API Gateway
