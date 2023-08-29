@@ -103,8 +103,8 @@ Now once we have this understanding, how can we use this while building HNSW ind
 
 | Solr Index time Parameter | Default | Description |
 | --- | --- | --- |
-| hnswMaxConnections | 16 | Lucene90HnswVectorsFormat only:Controls how many of the nearest neighbor candidates are connected to the new node.It has the same meaning as M from the paperhttps://arxiv.org/abs/1603.09320. |
-| hnswBeamWidth | 100 | Lucene90HnswVectorsFormat only: It is the number of nearest neighbor candidates to track while searching the graph for each newly inserted node.It has the same meaning as efConstruction from the paperhttps://arxiv.org/abs/1603.09320. |
+| hnswMaxConnections | 16 | Controls how many of the nearest neighbor candidates are connected to the new node.It has the same meaning as M from the paper |
+| hnswBeamWidth | 100 | It is the number of nearest neighbor candidates to track while searching the graph for each newly inserted node. It has the same meaning as efConstruction from the paper |
 
 Ref:
 
