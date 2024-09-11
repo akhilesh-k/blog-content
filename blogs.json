@@ -1,0 +1,152 @@
+[
+    {
+        "title": "Why I run?",
+        "category": "Atheletic Journey",
+        "date": "11-09-2024",
+        "subtitle": "Exploring the mental and physical benefits of running."
+    },
+    {
+        "title": "I started reading, again!",
+        "category": "Career Growth and Productivity",
+        "date": "04-09-2024",
+        "subtitle": "Rediscovering the joy and benefits of reading books."
+    },
+    {
+        "title": "Marking the 100k ride off my bucketlist",
+        "category": "Atheletic Journey",
+        "date": "22-08-2024",
+        "subtitle": "A reflection on the challenges and triumphs of completing a 100k cycling ride."
+    },
+    {
+        "title": "Unlocking the Power of Trie Structures: Applications Beyond Text Search",
+        "category": "Advanced Data Structures and Algorithms",
+        "date": "17-08-2024",
+        "subtitle": "Exploring various applications of Trie structures in computer science."
+    },
+    {
+        "title": "Understanding and Implementing the Skip List Data Structure",
+        "category": "Advanced Data Structures and Algorithms",
+        "date": "03-08-2024",
+        "subtitle": "An in-depth look at Skip Lists, their implementation, and use cases."
+    },
+    {
+        "title": "Navigating Concurrent Updates with Optimistic Locking",
+        "category": "Concurrency and Multithreading",
+        "date": "15-07-2024",
+        "subtitle": "Managing concurrent updates in distributed systems with optimistic locking."
+    },
+    {
+        "title": "Strong Resume Matters!",
+        "category": "Career Growth and Productivity",
+        "date": "09-07-2024",
+        "subtitle": "Key strategies for building a standout resume."
+    },
+    {
+        "title": "How to quantify the search results quality?",
+        "category": "Search Relevance and IR",
+        "date": "28-06-2024",
+        "subtitle": "Techniques to measure and improve search result quality."
+    },
+    {
+        "title": "Designing and implementing a sliding window based rate limiter",
+        "category": "Scalable Systems Design",
+        "date": "22-06-2024",
+        "subtitle": "A guide to implementing efficient rate limiting with sliding windows."
+    },
+    {
+        "title": "Understanding the difference between load balancer, reverse proxy and API gateway",
+        "category": "Scalable Systems Design",
+        "date": "12-05-2024",
+        "subtitle": "Clarifying the roles of load balancers, reverse proxies, and API gateways in distributed systems."
+    },
+    {
+        "title": "Is Hybrid Search the future of Ecommerce search?",
+        "category": "Search Relevance and IR",
+        "date": "11-04-2024",
+        "subtitle": "Examining the potential of hybrid search models in eCommerce."
+    },
+    {
+        "title": "How does the HNSW algorithm work?",
+        "category": "Search Relevance and IR",
+        "date": "15-03-2024",
+        "subtitle": "An overview of the HNSW algorithm and its applications in search."
+    },
+    {
+        "title": "When Priorities Change",
+        "category": "Atheletic Journey",
+        "date": "02-03-2024",
+        "subtitle": "Adapting to changing priorities in athletic pursuits."
+    },
+    {
+        "title": "Strong Resume Matters!",
+        "category": "Career Growth and Productivity",
+        "date": "01-03-2024",
+        "subtitle": "The importance of a well-crafted resume for career growth."
+    },
+    {
+        "title": "Becoming a Better Software Engineer",
+        "category": "Career Growth and Productivity",
+        "date": "18-02-2024",
+        "subtitle": "Tips and strategies for continuous improvement in software engineering."
+    },
+    {
+        "title": "Building Vector Search application on top of Solr?",
+        "category": "Search Relevance and IR",
+        "date": "22-01-2024",
+        "subtitle": "Step-by-step guide to implementing vector search with Solr."
+    },
+    {
+        "title": "The math behind Inverse Document Frequency - the IDF of TFIDF",
+        "category": "Currently Writing / WIP",
+        "date": "12-12-2023",
+        "subtitle": "A deep dive into the mathematical foundation of IDF in TF-IDF."
+    },
+    {
+        "title": "Bloom Filters Explained",
+        "category": "Advanced Data Structures and Algorithms",
+        "date": "23-11-2023",
+        "subtitle": "An introduction to Bloom Filters, their structure, and use cases."
+    },
+    {
+        "title": "Understanding and Implementing the HyperLogLog Data Structure",
+        "category": "Advanced Data Structures and Algorithms",
+        "date": "15-10-2023",
+        "subtitle": "Exploring the HyperLogLog data structure for approximate cardinality estimation."
+    },
+    {
+        "title": "I completed my first marathon!",
+        "category": "Atheletic Journey",
+        "date": "19-09-2023",
+        "subtitle": "My experience of training for and completing a marathon."
+    },
+    {
+        "title": "Exploring Minimalist Running Shoes",
+        "category": "Atheletic Journey",
+        "date": "07-07-2023",
+        "subtitle": "The pros and cons of running with minimalist shoes."
+    },
+    {
+        "title": "Training for a Triathlon",
+        "category": "Atheletic Journey",
+        "date": "21-06-2023",
+        "subtitle": "My journey and tips for preparing for a triathlon."
+    },
+    {
+        "title": "Back to learning deeply",
+        "category": "Career Growth and Productivity",
+        "date": "12-05-2023",
+        "subtitle": "How I'm approaching deep learning and knowledge acquisition in my career."
+    },
+    {
+        "title": "Pushing Beyond Limits",
+        "category": "Atheletic Journey",
+        "date": "09-03-2023",
+        "subtitle": "A reflection on the mental and physical challenges of endurance sports."
+    },
+    {
+        "title": "Understanding and Implementing the Count-Min Sketch Data Structure",
+        "category": "Advanced Data Structures and Algorithms",
+        "date": "07-01-2023",
+        "subtitle": "A guide to the Count-Min Sketch, its implementation, and applications."
+    }
+]
