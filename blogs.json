@@ -1,15 +1,15 @@
 [
     {
-        "title": "The math behind Inverse Document Frequency - the IDF of TFIDF",
-        "category": "Currently Writing / WIP",
-        "date": "12-12-2023",
-        "subtitle": "A deep dive into the mathematical foundation of IDF in TF-IDF."
-    },
-    {
         "title": "Why I run?",
         "category": "Atheletic Journey",
         "date": "11-09-2024",
         "subtitle": "Exploring the mental and physical benefits of running."
+    },
+    {
+        "title": "The math behind Inverse Document Frequency - the IDF of TFIDF",
+        "category": "Currently Writing / WIP",
+        "date": "12-12-2023",
+        "subtitle": "A deep dive into the mathematical foundation of IDF in TF-IDF."
     },
     {
         "title": "I started reading, again!",
