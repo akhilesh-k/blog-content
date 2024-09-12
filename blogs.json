@@ -1,5 +1,11 @@
 [
     {
+        "title": "The math behind Inverse Document Frequency - the IDF of TFIDF",
+        "category": "Currently Writing / WIP",
+        "date": "12-12-2023",
+        "subtitle": "A deep dive into the mathematical foundation of IDF in TF-IDF."
+    },
+    {
         "title": "Why I run?",
         "category": "Atheletic Journey",
         "date": "11-09-2024",
@@ -94,12 +100,6 @@
         "category": "Search Relevance and IR",
         "date": "22-01-2024",
         "subtitle": "Step-by-step guide to implementing vector search with Solr."
-    },
-    {
-        "title": "The math behind Inverse Document Frequency - the IDF of TFIDF",
-        "category": "Currently Writing / WIP",
-        "date": "12-12-2023",
-        "subtitle": "A deep dive into the mathematical foundation of IDF in TF-IDF."
     },
     {
         "title": "Bloom Filters Explained",
