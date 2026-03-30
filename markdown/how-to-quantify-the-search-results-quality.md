@@ -14,9 +14,9 @@ For example, a search for "best smartphones 2024" should ideally return a list o
 Search relevance is critical because it directly impacts user satisfaction and engagement. If a search engine consistently returns irrelevant results, users are likely to abandon the platform, leading to decreased user retention and lower revenue, especially in e-commerce scenarios.
 
 ## But, is it even possible to measure search relevance?
-Relevance is a subjective topic and it is more like Monalisa's painting, as in it depends on who the audience is. But giving a short answer, Yes. 
-We do it all the time. Sound's weird right? Yes I know.
 
+Relevance is a subjective topic and it is more like Monalisa's painting, as in it depends on who the audience is. But giving a short answer, Yes.
+We do it all the time. Sound's weird right? Yes I know.
 
 So we measure or we better to say, we try to measure the relevance based on **"Data points"**.
 
@@ -28,46 +28,49 @@ To quantify search relevance, we rely on a variety of metrics. These metrics can
 
 - **Precision**: Precision is the ratio of relevant documents retrieved to the total number of documents retrieved. It answers the question: "Of all the results shown, how many were actually relevant?"
 
-  \[
+  $$
   \text{Precision} = \frac{\text{Number of Relevant Results Retrieved}}{\text{Total Number of Results Retrieved}}
-  \]
+  $$
 
 - **Recall**: Recall is the ratio of relevant documents retrieved to the total number of relevant documents available. It answers the question: "Of all the relevant results, how many did the search engine retrieve?"
 
-  \[
+  $$
   \text{Recall} = \frac{\text{Number of Relevant Results Retrieved}}{\text{Total Number of Relevant Results Available}}
-  \]
+  $$
 
 - **F1 Score**: The F1 score is the harmonic mean of precision and recall, providing a single metric that balances both. It’s particularly useful when you need to weigh precision and recall equally.
 
-  \[
+  $$
   \text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-  \]
+  $$
 
 - **Mean Reciprocal Rank (MRR)**: MRR is the average of the reciprocal ranks of results for a sample of queries. It measures the rank at which the first relevant document appears.
 
-  \[
+  $$
   \text{MRR} = \frac{1}{|Q|} \sum_{i=1}^{|Q|} \frac{1}{\text{rank}_i}
-  \]
-  where \( \text{rank}_i \) is the rank of the first relevant document for query \(i\), and \( |Q| \) is the number of queries.
+  $$
+
+  where $\text{rank}_i$ is the rank of the first relevant document for query $i$, and $|Q|$ is the number of queries.
 
 - **Normalized Discounted Cumulative Gain (nDCG)**: nDCG is a metric that considers both the relevance and the position of search results. It provides a score between 0 and 1, where a higher score indicates better relevance and ranking.
 
-  \[
+  $$
   \text{DCG} = \sum_{i=1}^{n} \frac{2^{\text{rel}_i} - 1}{\log_2(i + 1)}
-  \]
-  \[
+  $$
+
+  $$
   \text{nDCG} = \frac{\text{DCG}}{\text{IDCG}}
-  \]
-  where \( \text{rel}_i \) is the relevance score of the result at position \(i\), and \( \text{IDCG} \) is the ideal DCG, representing the best possible ordering of results.
+  $$
+
+  where $\text{rel}_i$ is the relevance score of the result at position $i$, and $\text{IDCG}$ is the ideal DCG, representing the best possible ordering of results.
 
 ### Online Metrics
 
 - **Click-Through Rate (CTR)**: CTR measures the ratio of users who click on a search result to the total number of users who viewed the search result. A higher CTR often indicates higher relevance.
 
-  \[
+  $$
   \text{CTR} = \frac{\text{Number of Clicks}}{\text{Number of Impressions}}
-  \]
+  $$
 
 - **Dwell Time**: Dwell time is the amount of time a user spends on a page after clicking a search result. Longer dwell times suggest that the result was relevant and engaging.
 
