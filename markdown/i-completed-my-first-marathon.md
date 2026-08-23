@@ -1,3 +1,10 @@
+---
+title: "I completed my first marathon!"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # I completed my first marathon!
 
 Crossing my first marathon finish line did not feel dramatic in the movie sense. It felt quiet, heavy, and deeply personal. Like a long conversation with myself had finally ended.

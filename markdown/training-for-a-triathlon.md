@@ -1,3 +1,10 @@
+---
+title: "Training for a Triathlon"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # Training for a Triathlon
 
 When I first said out loud that I wanted to do a triathlon, most people asked the obvious question: "Do you even swim regularly?" The honest answer was no.

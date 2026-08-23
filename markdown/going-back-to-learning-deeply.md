@@ -1,3 +1,10 @@
+---
+title: "Back to learning deeply"
+description: ""
+category: "Career Growth and Productivity"
+date: "2023-05-12"
+---
+
 # Back to learning deeply
 
 ![Richard Feynman was a master of learning and the patience that deep understanding requires. His depth of knowledge was exactly what made him such a brilliant teacher.](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2F504030a/MediaObjects/41586_2013_BF504030a_Figa_HTML.jpg)

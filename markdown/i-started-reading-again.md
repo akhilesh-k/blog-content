@@ -2,7 +2,7 @@
 title: "I started reading again."
 description: "A reflection on rediscovering the joy of reading after a long hiatus."
 category: "Essays"
-date: "03-31-2026"
+date: "2026-03-31"
 ---
 
 # I started reading again.

@@ -1,3 +1,10 @@
+---
+title: "How does the HNSW algorithm work"
+description: ""
+category: "Search Relevance and IR"
+date: "2024-03-15"
+---
+
 # How does the HNSW algorithm work
 
 ![Layered representation of HNSW](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled.png)

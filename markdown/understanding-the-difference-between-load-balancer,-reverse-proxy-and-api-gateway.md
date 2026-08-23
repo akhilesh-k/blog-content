@@ -1,3 +1,10 @@
+---
+title: "Understanding the difference between Load Balancer, API Gateway and the Reverse Proxy"
+description: ""
+category: "Scalable Systems Design"
+date: "2024-05-12"
+---
+
 # Understanding the difference between Load Balancer, API Gateway and the Reverse Proxy
 
 ![Untitled](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/understanding-the-difference-between-load-balancer/cover.png)

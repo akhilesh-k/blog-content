@@ -1,3 +1,10 @@
+---
+title: "Marking the 100k ride off my bucketlist"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # Marking the 100k ride off my bucketlist
 
 A 100 km ride sat on my bucket list for a long time because it felt just far enough to be intimidating.

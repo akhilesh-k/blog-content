@@ -1,3 +1,10 @@
+---
+title: "Exploring Minimalist Running Shoes"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # Exploring Minimalist Running Shoes
 
 I got curious about minimalist shoes the same way most runners do: after too many late-night rabbit holes about form, cadence, and injury prevention.

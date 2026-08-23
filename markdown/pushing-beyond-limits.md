@@ -1,3 +1,10 @@
+---
+title: "Pushing Beyond Limits"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # Pushing Beyond Limits
 
 For the longest time, I believed progress came from motivation. If I felt excited, I trained. If I did not, I postponed. That worked for a while, until it did not.

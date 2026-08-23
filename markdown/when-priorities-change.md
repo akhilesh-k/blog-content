@@ -1,3 +1,10 @@
+---
+title: "When Priorities Change"
+description: ""
+category: "Uncategorized"
+date: ""
+---
+
 # When Priorities Change
 
 There was a phase where training stopped being the center of my week. Work deadlines piled up, sleep took a hit, and "I will run tomorrow" became a familiar excuse.

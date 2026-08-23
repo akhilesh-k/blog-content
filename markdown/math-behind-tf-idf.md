@@ -1,3 +1,10 @@
+---
+title: "The math behind the TF-IDF"
+description: ""
+category: "Currently Writing / WIP"
+date: "2023-12-12"
+---
+
 # The math behind the TF-IDF
 
 ![Layered representation of HNSW](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/how-does-the-hnsw-algorithm-work/Untitled.png)
