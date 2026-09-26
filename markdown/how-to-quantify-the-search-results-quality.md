@@ -1,11 +1,11 @@
 ---
-title: "How to quantifying search relevance"
+title: "How to quantify search relevance"
 description: ""
 category: "Search Relevance and IR"
 date: "2024-06-28"
 ---
 
-# How to quantifying search relevance
+# How to quantify search relevance
 
 Whether it's a global search giant like Google or a specialized e-commerce platform, the effectiveness of a search engine hinges on one key metric: **search relevance**. But what exactly is search relevance, and how can it be quantified? I have tried to pen down a few of the learnings from the experience of working as a Search Engineer at [Blibli.com](https://blibli.com).
 Before we dive deeper into how to measure search relevance, let’s briefly know what search relevance is.
