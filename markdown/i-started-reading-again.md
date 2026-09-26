@@ -16,10 +16,10 @@ So, I picked up a book. Not a heavy literary tome, or anything I felt I _should_
 
 It's been a few months now, and that initial spark has turned into a steady flame. I've rediscovered the sheer joy of reading. It’s not just about consuming content; it’s about nurturing a part of myself that had been neglected. I’m finding my focus returning, my vocabulary expanding, and my perspective broadening with every new story and idea.
 
-![Kindle and me, probably the best investment I have ever made](https://raw.githubusercontent.com/akhilesh-k/blog-content/refs/heads/main/markdown/i-started-reading-again/kindle_and_me.JPG)
+![Kindle and me, probably the best investment I have ever made](https://raw.githubusercontent.com/akhilesh-k/blog-content/refs/heads/main/markdown/i-started-reading-again/kindle_and_me.png)
 
 I’m reading during my commute, before bed instead of staring at a screen, and even sneaking in a few pages during lunch. There's no pressure to finish a certain number of books, or to stick to a particular genre. It’s simply about the pleasure of the act itself.
-![taking kindle on dates!](https://raw.githubusercontent.com/akhilesh-k/blog-content/refs/heads/main/markdown/i-started-reading-again/kindle_and_me.JPG)
+![taking kindle on dates!](https://raw.githubusercontent.com/akhilesh-k/blog-content/refs/heads/main/markdown/i-started-reading-again/taking_kindles_on_date.jpg)
 
 If you, like me, have found yourself drifting away from reading, I can’t recommend enough just picking up that one book. The one that’s been calling to you, however quietly. You might be surprised at what you rediscover, not just within its pages, but within yourself too.
 
