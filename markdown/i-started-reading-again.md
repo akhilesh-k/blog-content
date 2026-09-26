@@ -6,7 +6,7 @@ date: "2026-03-31"
 ---
 
 # I started reading again.
-
+![Me in my natural habitat!](https://raw.githubusercontent.com/akhilesh-k/blog-content/main/markdown/i-started-reading-again/IMG_2668.JPG)
 It feels like a confession, almost, to admit that for a good few years, reading took a backseat. Life got busy, screens became omnipresent, and the quiet ritual of sinking into a book was replaced by endless scrolling and quick-hit entertainment. I didn't realize how much I missed it until I actually started doing it again.
 
 There wasn't one grand epiphany. It was more a slow, dawning awareness that something was missing. My mind felt a bit… fuzzy. Conversations felt shallower. Even my capacity for sustained focus seemed to wane. I craved that feeling of true immersion, of getting lost in someone else's world or grappling with a new idea that only a book can provide.
