@@ -2,7 +2,7 @@
 title: "Why strong engineers are rarely blocked"
 description: "What experienced engineers do differently when the work gets difficult, uncertain, or dependent on someone else."
 category: "Engineering"
-date: "2026-08-23"
+date: "2026-06-23"
 ---
 
 A pattern becomes visible after watching engineers work for long enough: the strongest engineers are not the ones who never get blocked. They are the ones who spend very little time staying blocked.[^1] 
