@@ -1,7 +1,7 @@
 ---
 title: "Bloom Filters Explained"
 description: ""
-category: "Uncategorized"
+category: "Engineering"
 date: ""
 ---
 
