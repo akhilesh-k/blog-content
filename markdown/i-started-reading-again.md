@@ -35,9 +35,10 @@ One line from it has stuck with me: *"Dear Person, Why Read? Because you only ha
 
 Moving on to 2025, I gifted myself a Kindle on my birthday. I was a bit hesitant initially thinking it would be just another gadget that I would stop using after a few weeks. But that was not the case. I started reading more than ever. The best thing about Kindle is I carry it everywhere. I have carried it to mountains, beaches, grocery shopping, work commute, heck, even dates too!
 
-I’m reading during my commute, before bed instead of staring at a screen, and even sneaking in a few pages during lunch. There's no pressure to finish a certain number of books, or to stick to a particular book, I keep reading 2-3 at a time. It’s simply about the pleasure of reading itself.
-
 ![taking kindle on dates!](https://raw.githubusercontent.com/akhilesh-k/blog-content/refs/heads/main/markdown/i-started-reading-again/taking_kindles_on_date.jpg)
+
+
+I’m reading during my commute, before bed instead of staring at a screen, and even sneaking in a few pages during lunch. There's no pressure to finish a certain number of books, or to stick to a particular book, I keep reading 2-3 at a time. It’s simply about the pleasure of reading itself.
 
 If you, like me, have found yourself drifting away from reading, I can’t recommend enough just picking up that one book. The one that’s been calling to you, however quietly. You might be surprised at what you rediscover, not just within its pages, but within yourself too.
 
