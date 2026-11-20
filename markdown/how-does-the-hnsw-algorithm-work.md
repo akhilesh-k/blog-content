@@ -1,7 +1,7 @@
 ---
 title: "How does the HNSW algorithm work"
 description: ""
-category: "Search Relevance and IR"
+category: "search engineering"
 date: "2024-03-15"
 ---
 

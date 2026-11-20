@@ -1,7 +1,7 @@
 ---
 title: "How to quantify search relevance"
 description: ""
-category: "Search Relevance and IR"
+category: "search engineering"
 date: "2024-06-28"
 ---
 
