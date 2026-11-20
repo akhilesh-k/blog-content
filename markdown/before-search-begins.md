@@ -1,124 +1,73 @@
 ---
-title: "Before Search Begins"
-description: "Understanding Tokenization, Stemming, and Stop Words"
+title: "Before search begins..."
+description: "How search engines process raw text before retrieval: a practical introduction to tokenization, stop word removal, and stemming in full-text search analysis."
 category: "Search Engineering"
+tags: "Search Engineering, Text Analysis, Tokenization, Stemming, Stop Words, Full-Text Search"
 date: "2026-11-06"
 ---
 
-When we type a query into a search box, we expect the search engine to understand what we're looking for and return the most relevant results.
+When you type something into a search box, you expect results. Relevant ones, and that goes without saying. 
 
-But before a search engine can retrieve documents, calculate relevance, or rank results, it needs to understand the text it's working with.
+The search engine should somehow know understand what you meant, your intent and hand back the most relevant documents, ranked in the right order.
 
-Consider a simple search query:
+That expectation has a lot of background work involved. Before any document gets retrieved or any relevance score is calculated, the search engine has to figure out what the text actually says. If we talk about full text search, both the search query and the documents it searches through start out as raw text, and raw text is messy.
 
-_**"Running shoes for men"**_
+Take a query like _**"Running shoes for men"**_. To you and me, that's a simple phrase with a clear intent. To a search engine, it's nothing more than a sequence of characters. There is no concept of "shoes" or "running" yet, just bytes sitting in memory.
 
-To a human, this is a straightforward phrase. But to a search engine, it is initially just a sequence of characters.
-
-How do we transform this raw text into something that a search engine can efficiently process?
-
-This is where text analysis comes into play.
-
-Three fundamental concepts form the foundation of traditional text processing:
+So how does that string become something a machine can search through? That's the job of text analysis[^1], and it rests on three ideas that come up constantly in traditional search systems:
 
 1. Tokenization
-
-2. Stop Word Removal
-
+2. Stop word removal
 3. Stemming
 
-Let's understand each of them.
+Let's go through them one by one.
 
-### 1. Tokenization: Breaking Text into Smaller Units
+## 1. Tokenization: Breaking Text into Smaller Units
 
-Tokenization is the process of breaking a piece of text into smaller units called *tokens*.
+Tokenization breaks a piece of text into smaller units, called *tokens*. Depending on the strategy, a token might be a word, a subword, or a single character.
 
-These tokens can be words, subwords, or even individual characters, depending on the tokenization strategy.
+For a query like `"Running shoes for men"`, a word-level tokenizer produces:
 
-For example:
+**Input:** `Running shoes for men`
 
-**Input:**
-`Running shoes for men`
+**Output:** `["Running", "shoes", "for", "men"]`
 
-**Output:**
-`["Running", "shoes", "for", "men"]`
+Why bother? Because a search engine's inverted index is built out of terms, and terms have to come from somewhere. Once both the documents and the query are broken into tokens, matching becomes possible. Two documents like "Best running shoes for men" and "Men's shoes for running" share enough tokens after this step that a lexical matcher can tell they're related.
 
-Why is this important?
+The catch is that splitting on spaces doesn't always work. Real text is full of cases where the "right" answer isn't obvious:
 
-Search engines need individual terms to build their inverted indexes. Tokenization helps transform an entire document or query into searchable units.
+- `don't`: one token or two?
+- `iPhone 16`: is the model number part of the token, or separate from it?
+- `New York`: two tokens, or one phrase?
+- `state-of-the-art`: what do we do with hyphens?
 
-For example, consider two documents:
-
-- Document A: "Best running shoes for men"
-- Document B: "Men's shoes for running"
-
-After tokenization, both documents contain several overlapping terms, making lexical matching possible.
-
-However, tokenization isn't always as simple as splitting text on spaces.
-
-Consider:
-
-- `don't` — Should it be one token or two?
-- `iPhone 16` — Should the model number be treated separately?
-- `New York` — Should it be considered two tokens or a single phrase?
-- `state-of-the-art` — How should hyphenated words be handled?
-
-The right tokenization strategy depends on the language, domain, and search requirements.
-
----
+There's no universal answer here. The best tokenization strategy depends on the language you're working with, the domain, and what your users actually search for.
 
 ## 2. Stop Words: Removing Common Words
 
-Not every word contributes equally to the meaning of a search query.
+Some words show up everywhere and tell you almost nothing. Words like _the, is, a, an, for, of, and_ appear in nearly every English sentence, which means they do very little to distinguish one document from another. In information retrieval, these are called **stop words**[^2].
 
-Words such as: _the, is, a, an, for, of, and_ are commonly referred to as **stop words**.
-
-These words appear frequently in natural language and often carry relatively little discriminative value in traditional lexical search.
-
-Consider the query:
-
-`"Best running shoes for men"`
-
-After removing stop words:
+Look what happens to `"Best running shoes for men"` once they're stripped out:
 
 `["Best", "running", "shoes", "men"]`
 
-Why remove them?
+Nothing important was lost here, and the query got smaller. That's the appeal. In traditional retrieval systems, dropping stop words shrinks the index, cuts down the number of postings lists that have to be processed at query time, and removes noise from terms that match half the corpus anyway.
 
-In traditional information retrieval systems, removing stop words can:
+But it can go wrong. Try removing stop words from these queries:
 
-- Reduce the size of the search index.
-- Reduce the number of postings lists that need to be processed.
-- Reduce noise from frequently occurring terms.
+- "The Who": a famous music band[^5].
+- "To be or not to be": a meaningful phrase.
+- "Flights from Bangalore to Delhi": here "from" and "to" carry the entire meaning of the query.
 
-However, stop word removal is not always beneficial.
+In the first two cases the query gets damaged or destroyed. In the third, removing "from" and "to" leaves you with flights between Bangalore and Delhi in every direction, plus everything going to Bangalore from anywhere.
 
-Consider these queries:
-
-- "The Who" — a famous music band.
-- "To be or not to be" — a meaningful phrase.
-- "Flights from Bangalore to Delhi" — the words "from" and "to" provide important context.
-
-Removing stop words blindly can change the intent of a query.
-
-Modern search systems often retain stop words or use more sophisticated query processing strategies rather than applying aggressive stop word removal.
-
----
+Blind stop word removal changes what a query means. That's a big part of why modern systems tend to keep stop words, or handle them through smarter query processing instead of deleting them outright.
 
 ## 3. Stemming: Reducing Words to Their Root Form
 
-Stemming is the process of reducing different variations of a word to a common stem.
+Stemming reduces different forms of a word down to a common stem. Take *connect*, *connected*, *connecting*, and *connection*. A stemming algorithm tries to collapse all of them into one representation.
 
-Consider the following words:
-
-- connect
-- connected
-- connecting
-- connection
-
-A stemming algorithm attempts to reduce related word forms to a common representation.
-
-For example:
+A few examples:
 
 | Original word | Stem |
 |---|---|
@@ -128,84 +77,51 @@ For example:
 | studies | studi |
 | running | run |
 
-Notice that stemming does not necessarily produce a valid dictionary word.
+One thing that jumps out: stems are not always real words. `studies` turns into `studi`. That's because most stemmers are just rule-based suffix strippers. They chop off endings according to fixed patterns, without caring whether the result means anything. The **Porter Stemmer**, still one of the most widely used algorithms for English, works by applying a long sequence of these rules[^3].
 
-For example, `studies` might become `studi`.
+Why should a search engineer care? Say a user searches for `"running shoes"`, and the best document in your corpus contains the phrase `"best shoes to run a marathon"`. Without any normalization, `running` and `run` are two unrelated tokens as far as the index is concerned, and that document never matches. With stemming, both reduce to the same form:
 
-This is because stemming generally uses rule-based transformations to remove prefixes or suffixes.
+| Term | Stem |
+|---|---|
+| running | run |
+| run | run |
 
-One popular stemming algorithm is the **Porter Stemmer**, which applies a sequence of rules to reduce English words to their stems.
+The match goes through. This is what stemming buys you: **recall**, the ability to pull in relevant documents even when they phrase things differently from the query.
 
-Why does this matter in search?
+It cuts the other way, though. Stemmers know nothing about meaning, so sometimes unrelated words collapse into the same stem[^4]:
 
-Imagine a user searches for:
+| Original word | Stem |
+|---|---|
+| university | univers |
+| universe | univers |
 
-`"running shoes"`
+After stemming, a query for `universe` and a query for `university` are identical to the engine. Someone looking up one of these probably does not want the other, but the index can't tell the difference.
 
-But the indexed document contains:
-
-`"shoes for runners"`
-
-Without normalization or additional matching strategies, these words may not match directly.
-
-Stemming helps improve lexical matching by reducing morphological variations to common forms.
-
-It can improve recall, allowing the search engine to retrieve more potentially relevant documents.
-
-However, stemming can sometimes over-normalize words, causing unrelated terms to share the same stem.
-
----
+So treat stemming as a trade. You get more recall, and you pay for it in precision. Most engines let you tune stemming per field, and some cases are better served by lemmatization, which is slower and more complex but always produces a real dictionary word.
 
 ## 4. Putting It All Together
 
-Let's look at a simple text processing pipeline.
+Here's the full pipeline applied to one sentence:
 
-**Original text:**
+**Original text:** `"The runners are running towards the best running shoes"`
 
-`"The runners are running towards the best running shoes"`
-
-**Step 1 — Tokenization**
+**Step 1: Tokenization**
 
 `["The", "runners", "are", "running", "towards", "the", "best", "running", "shoes"]`
 
-**Step 2 — Stop Word Removal**
+**Step 2: Stop word removal**
 
 `["runners", "running", "towards", "best", "running", "shoes"]`
 
-**Step 3 — Stemming**
+**Step 3: Stemming**
 
 `["runner", "run", "toward", "best", "run", "shoe"]`
 
-The result is a normalized representation of the original text.
-
-<pre>
-Raw Text
-   |
-   v
-Tokenization
-   |
-   v
-Stop Word Removal
-   |
-   v
-Stemming
-   |
-   v
-Normalized Tokens
-   |
-   v
-Indexing / Retrieval
-</pre>
-
-This is a simplified illustration. In real-world search systems, text analysis may also include lowercasing, Unicode normalization, synonym expansion, lemmatization, language detection, and domain-specific processing.
-
----
+What's left is a normalized, stripped-down version of the original text, and that's what actually gets written into the index.
 
 ## 5. Why Search Engineers Should Care
 
-These concepts might seem like basic NLP operations, but they directly influence search quality.
-
-A few important trade-offs:
+These ideas get taught as intro NLP material, which makes them easy to dismiss. They shouldn't be. Every one of them shows up as a knob that affects search quality:
 
 | Technique | Primary benefit | Potential drawback |
 |---|---|---|
@@ -213,12 +129,16 @@ A few important trade-offs:
 | Stop word removal | Reduces index noise and size | Can remove meaningful context |
 | Stemming | Improves matching across word variations | Can introduce false matches |
 
-The important takeaway is that text preprocessing is not just about cleaning text.
+The real lesson is that preprocessing isn't housekeeping. Every step in the analysis pipeline is a decision about what information to keep, what to normalize, and what to throw away, and those decisions shape indexing, matching, recall, and ultimately how relevant your results feel. If you want to keep going, I've written about [how to quantify the quality of search results](/essays/how-to-quantify-the-search-results-quality) and [how the HNSW algorithm powers vector search](/essays/how-does-the-hnsw-algorithm-work), both of which sit a layer above the text processing covered here.
 
-It is about deciding which information to preserve, normalize, or discard before retrieval begins.
+**Before a search engine can understand what a user wants, it has to understand the words they're using.** That work happens quietly, before search begins.
 
-A small decision in the analysis pipeline can have a significant impact on indexing, query matching, recall, and ultimately search relevance.
+[^1]: Read more about it on elastic docs, [Text analysis during search](https://www.elastic.co/docs/solutions/search/full-text/text-analysis-during-search)
 
-**Before a search engine can understand what a user wants, it first needs to understand the words they're using.**
+[^2]: The best-known English stop list traces back to Cornell's SMART retrieval system from the mid 1960s, containing 571 words. Variants of it still ship inside Lucene-based engines today.
 
-And that is where search begins.
+[^3]: M.F. Porter, "An algorithm for suffix stripping", Program, 14(3), 1980. The paper, reference implementations, and a test vocabulary of over 23,000 words are hosted by the author at [tartarus.org/martin/PorterStemmer](https://tartarus.org/martin/PorterStemmer/)
+
+[^4]: The university/universe conflation example follows the classic treatment in Introduction to Information Retrieval by Manning, Raghavan, and Schütze (Cambridge University Press, 2008), freely available online at [nlp.stanford.edu/IR-book/html/htmledition/irbookprint.html](https://nlp.stanford.edu/IR-book/html/htmledition/irbookprint.html)
+
+[^5]: The band The The is the folklore example of stop word removal gone wrong. In the 1990s, engines that dropped "the" made the band practically unsearchable, and fans resorted to searching for album names or Matt Johnson instead. Search lore keeps it alive as a warning that stop lists can erase the very thing someone is looking for.
